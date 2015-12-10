@@ -11,7 +11,7 @@
 
 ADDAC_Empty::ADDAC_Empty(){	// INITIALIZE CLASS
 	
-	CVstream = 0;
+	CVstream = 0.0f;
 	
 	//Serial.println("ADDAC_Empty INITIALIZED");
 }
@@ -22,7 +22,7 @@ ADDAC_Empty::ADDAC_Empty(){	// INITIALIZE CLASS
 //
 
 
-long ADDAC_Empty::update(unsigned int _val){ // DO SOMETHING !
+long ADDAC_Empty::update(float _val){ // DO SOMETHING !
 	// do some fancy calculations
 	CVstream = _val / 2.0f * 4.0f / 2.0f;
 	

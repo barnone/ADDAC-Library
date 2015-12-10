@@ -26,13 +26,17 @@
 
 
 class ADDAC_Quad{
+    
 public:
 	ADDAC_Quad();
-		//void setup();
-		void calcs(int MODE, float _r, float _theta, float _in3,float _in4,float _in5);
+    //void setup();
+    void calc(bool _MODE, bool _WRAPmode, float _r, float _theta, float _free1, float _free2, float _free3);
 	
+    bool WRAPmode, MODE;
+    
     float r;
-    float theta;
+    float theta, oldTheta, thetaA;
+    bool thetaUP;
     
     float x1;
     float y1;
@@ -53,13 +57,13 @@ public:
     
     float x, y;
     
-    int auxTheta;
-    
     float rSpeaker;
     float filterFreq;
     float filterFreqPower;
     
     float xAbs, yAbs;
+    
+    float oldAngle, diff;  
 
 	
 };

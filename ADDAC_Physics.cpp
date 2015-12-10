@@ -5,7 +5,7 @@
 
 
 //-----------------------------------------------------------------------ADDAC-----------------
-
+/*! \brief Default constructor for ADDAC_Physics. */
 ADDAC_Physics::ADDAC_Physics(){	
 	AinitCondition = 2;
 	Angle = PI/2;
@@ -42,15 +42,21 @@ ADDAC_Physics::ADDAC_Physics(){
 
 // --------------------------------------------------------------------------- UPDATE -------------------------
 //
+/*! \brief Marble Physics update
+ \param _gx X gravity/force
+ \param _gy Y gravity/force
+ \param _material ball ellasticity
+ \param _speed ball spped
+ */
 
 void ADDAC_Physics::update(float _gx, float _gy, float _material, float _speed) {
     
-	gx=_gx/1023.0f - 0.5f;
-	gy =_gy/1023.0f - 0.5f;
-	Bmaterial= _material/1023.0f/2+0.5f;
+	gx =_gx-0.5;//1023.0f - 0.5f;
+	gy =_gy-0.5;//1023.0f - 0.5f;
+	Bmaterial= _material/2.0f+0.5;///1023.0f/2+0.5f;
 	//boundX=_speed;
 	//boundY=_speed;
-	inc_t = _speed/255.0f;
+	inc_t = _speed*4.0f;
 	
 	//x = AinitCondition* encolher * cos(sqrt(Kelasticity/Mass)*t*(encolher))*cos(Angle);
 	//y = -AinitCondition* encolher * cos(sqrt(Kelasticity/Mass)*t*(encolher))*sin(Angle);
@@ -93,19 +99,22 @@ void ADDAC_Physics::update(float _gx, float _gy, float _material, float _speed) 
 	
 	Velocity = sqrt((gx * t + ax)*(gx * t + ax) + (gy * t + ay)*(gy * t + ay));
 	Velocity = constrain(Velocity,0,20);
-	Velocity = Velocity/20.0f *addacMaxResolution;
+	Velocity = Velocity/20.0f;
 	
-	x=(x + boundX) / (boundX * 2) * addacMaxResolution;
-	y=(y + boundY) / (boundY * 2) * addacMaxResolution;
+	x=(x + boundX) / (boundX * 2);
+	y=(y + boundY) / (boundY * 2);
 	
 	t = t+inc_t;
     
   }
 
 
+/*! \brief Bump Marble
+ \param _fMinGateVal force
+ */
 void ADDAC_Physics::bump(int _fMinGateVal){
 	if(_fMinGateVal>gateThreshold){
-        //Serial.print(" GATED!");
+        Serial.print(" GATED!");
         t=0;
 		x=0;
         y=0;

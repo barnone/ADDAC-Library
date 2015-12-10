@@ -36,16 +36,16 @@
 #include <WProgram.h>
 #endif
 
-#define addacMaxResolution 65535 
+
 
 
 
 class ADDAC_Empty{
 public:
 	ADDAC_Empty();
-	long update(unsigned int _val); // Function to be called from Arduino Environment
+	long update(float _val); // Function to be called from Arduino Environment
 	
-	unsigned int CVstream; // Public Variables
+	float CVstream; // Public Variables
 	
 };
 #endif

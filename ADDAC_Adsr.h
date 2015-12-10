@@ -17,27 +17,31 @@
 
 //#define DEBUG
 //#define DEBUG_adsr
-
+/*! \ADDAC_ADSR class */
 class ADDAC_Adsr{
 public:
 	ADDAC_Adsr();
 	
-	void adsrMode(int _channel, bool _trigger, bool _inverted, float _A, float _Atime, float _D, float _Dtime, float _S,float _Stime, float _Rtime);
-	void adsrLogExpMode(int _channel, bool _trigger, bool _inverted, float _A, float _Atime, float _Ashape, float _D, float _Dtime, float _Dshape, float _S, float _Stime, float _Sshape, float _Rtime, float _Rshape);
-	void adsrWeirdMode(int _channel, bool _trigger, bool _inverted, float _A, float _Atime, float _Ashape, float _D, float _Dtime, float _Dshape);
+	void update(bool _trigger, bool _inverted, float _Atime, float _D, float _Dtime,float _Stime, float _Rtime);
+    void update(bool _trigger, bool _inverted, float _A, float _Atime, float _D, float _Dtime, float _Stime, float _Rtime);
+	void updateLogExpMode(bool _trigger, bool _inverted, float _A, float _Atime, float _Ashape, float _D, float _Dtime, float _Dshape,float _S, float _Stime, float _Sshape, float _Rtime, float _Rshape);
 	
-	void AD_trigger(float _A);
-	void AD_trigger();
-	void AD_release();
-	void AD_update(float _Atime, float _Dtime);
-	void ADSR_update(float _A, float _Atime, float _D, float _Dtime, float _S,float _Stime, float _Rtime);
 	
+    ///
+    
+	void update(float _A, float _Atime, float _D, float _Dtime, float _S,float _Stime, float _Rtime);
+	
+    void trigger(float _A);
+	void trigger();
+	void release();
+    
+    
 	unsigned long ADSRtriggerTime;
 	bool ADSRtrigger;
 	
-	unsigned int CVstream;
+    float CVstream;
 	unsigned int toAddDif;
-	long TipPoint;
+	float TipPoint;
 	float Attack;
 	float floatPercentage, weakLink;
 	
